@@ -3,12 +3,12 @@
 import { useUser } from "@clerk/nextjs"
 import { useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
-import { toast } from "sonner"
 import { Avatar, AvatarImage } from "./ui/avatar"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { ImageIcon, Loader2Icon, SendIcon } from "lucide-react"
 import { createPost } from "@/actions/post.action"
+import toast from "react-hot-toast"
 
 const CreatePost = () => {
   const { user } = useUser();
