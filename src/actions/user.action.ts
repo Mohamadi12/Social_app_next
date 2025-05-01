@@ -40,7 +40,7 @@ export async function syncUser() {
 //       const { userId } = await auth();
 //       const user = await currentUser();
 //       if (!userId || !user) return;
-  
+
 //       return await prisma.user.upsert({
 //         where: { clerkId: userId },
 //         update: {},
@@ -56,4 +56,20 @@ export async function syncUser() {
 //       console.log("Error in syncUser", error);
 //     }
 //   }
-  
+
+export async function getUserByClerkId(clerkId: string) {
+  return prisma.user.findUnique({
+    where: {
+      clerkId,
+    },
+    include: {
+      _count: {
+        select: {
+          followers: true,
+          following: true,
+          posts: true,
+        },
+      },
+    },
+  });
+}
